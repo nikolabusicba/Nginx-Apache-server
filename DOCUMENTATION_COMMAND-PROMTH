@@ -35,4 +35,10 @@ sudo mkdir -p /var/www/myproject
 echo "<?php echo 'PHP ' . PHP_VERSION . ' is running'; ?>" | sudo tee /var/www/myproject/index.php
 sudo nano /etc/nginx/sites-available/myproject
 
+//Disable default site and replacing it with ours
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+
 
