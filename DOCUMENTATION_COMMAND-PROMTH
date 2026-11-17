@@ -41,4 +41,9 @@ sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
-//After that go-to PHP 
+//After that go-to "PHP site configuration" file and use b) option, then the site shouldn't answer with: 404 not found
+
+//Home Assistant
+sudo nano /etc/nginx/sites-available/homeassistant
+
+
