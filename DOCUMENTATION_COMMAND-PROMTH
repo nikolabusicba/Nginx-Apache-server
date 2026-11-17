@@ -41,4 +41,4 @@ sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
-
+//After that go-to PHP 
