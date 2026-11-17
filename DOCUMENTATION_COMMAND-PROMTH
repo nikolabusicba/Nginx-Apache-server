@@ -1,0 +1,38 @@
+//Is port 80 free?
+sudo ss -ltnp | grep ':80 '
+sudo systemctl disable --now apache2
+
+//installing apache
+sudo apt update
+sudo apt install apache2 -y
+
+//adding PHP
+sudo apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip -y
+sudo systemctl restart apache2
+
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+sudo rm /var/www/html/info.php
+
+//Allow Htaccess
+sudo a2enmod rewrite
+sudo nano /etc/apache2/sites-available/000-default.conf
+
+<Directory /var/www/html> AllowOverride All </Directory>
+
+//Testing configuration & restaring apache
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+
+//Installing Nginx
+sudo apt update
+sudo apt install nginx -y
+
+//adding PHP-FPM
+sudo apt install php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-zip -y
+
+//Setting up a PHP server (myproject)
+sudo mkdir -p /var/www/myproject
+echo "<?php echo 'PHP ' . PHP_VERSION . ' is running'; ?>" | sudo tee /var/www/myproject/index.php
+sudo nano /etc/nginx/sites-available/myproject
+
+
